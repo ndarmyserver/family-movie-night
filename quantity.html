@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>High Score</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
+    <link rel="manifest" href="img/icons/site.webmanifest">
+    <link rel="mask-icon" href="img/icons/safari-pinned-tab.svg" color="#1f4476">
+    <link rel="shortcut icon" href="img/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#e7e6e8">
+    <meta name="msapplication-config" content="img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Pop-A-Shot High Score">
+    <meta property="og:image" content="https://popashot.johnshaida.com/img/social-sharing.jpg">
+    <meta property="og:description" content="List of high scores for Pop-A-Shot">
+    <meta property="og:url" content="https://popashot.johnshaida.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="logo-container">
+      <a href="index.html"><img src="img/logo.jpg" alt="Shaida Family Movie Night"></a>
+    </div>
+    <div class="leaderboard">
+      <h1 class="text-accent-color">TICKETS</h3>
+      <div class="movie-poster-mini">
+        <img id="movie-poster-mini" src="" alt="" />
+      </div>
+      <h2 id="movie-title" class="text-light-color">Movie Title</h2>
+      <div class="spacer-small">
+        <h3 id="movie-showtime" class="text-light-color italic">Showtime</h3>        
+      </div>
+      <div id="content" style="font-size: 3rem; padding: 20px 10%;">
+        <div class="main-container">
+          <div class="left-col">
+            <i class="far fa-minus-square" onClick="onMinusClick()"></i>
+          </div>
+          <div class="center-col">
+            <span id="num-of-tickets">0</span>
+          </div>
+          <div class="right-col">
+            <i class="far fa-plus-square" onClick="onPlusClick()"></i>
+          </div>
+        </div>
+        <a href="confirmation.html" id="purchase" class="button">Purchase Tickets</a>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+          vars[key] = value;
+      });
+      return vars;
+    }
+    movie_title = decodeURI(getUrlVars()['movie_title']);
+    document.getElementById("movie-title").innerText = movie_title;
+    movie_poster = decodeURI(getUrlVars()['movie_poster']);
+    document.getElementById("movie-poster-mini").setAttribute('src', movie_poster);
+    document.getElementById("movie-poster-mini").setAttribute('alt', movie_title);
+    movie_showtime = decodeURI(getUrlVars()['movie_showtime']);
+    document.getElementById("movie-showtime").innerText = '(' + movie_showtime + ')';
+    var tickets = 0;
+    function onMinusClick() {
+      if(tickets > 1) {
+        tickets -= 1;
+        document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets);
+        document.getElementById("purchase").style.display = "block";
+        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+      } else {
+        tickets = 0;
+        document.getElementById("purchase").style.display = "none";
+      }
+      document.getElementById("num-of-tickets").innerText = tickets;
+    };
+
+    function onPlusClick() {
+      if(tickets < 99) {
+        tickets += 1;
+        document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets + '&movie_poster=' + encodeURI(movie_poster));
+        document.getElementById("purchase").style.display = "block";
+        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+      }
+      document.getElementById("num-of-tickets").innerText = tickets;
+    };
+
+  </script>
+</html>
