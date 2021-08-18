@@ -1,8 +1,9 @@
 /*-------------------- Body --------------------*/
+
 body {
   min-height: 450px;
   height: 100vh;
-  margin: 0;
+  margin: 0 0 40px;
   padding: 0;
   background-color: #ffddbc;
   color: #ffffff;
@@ -19,7 +20,9 @@ hr {
   height: 1px;
   background: #ffddbc;
 }
-
+.wrapper {
+  padding-bottom: 40px;
+}
 .logo-container {
   max-width: 150px;
   margin: 20px auto 0;
@@ -29,9 +32,9 @@ hr {
 }
 /*-------------------- Leaderboard --------------------*/
 .leaderboard {
+  overflow: hidden;
   margin: 20px auto 0;
   padding: 20px 20px 40px;
-  max-width: 350px;
   background: #f68714;
   border-radius: 10px;
   box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
@@ -99,8 +102,8 @@ hr {
   width: 25%;
 }
 .button {
-  display: none;
-  margin: 30px auto 0;
+  display: block;
+  margin: 0 auto;
   max-width: 350px;
   background: #c2202b;
   border-radius: 10px;
@@ -115,6 +118,18 @@ hr {
 .button:hover {
   background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
 }
+.container-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.container-flex .item {
+  margin-top: 40px;
+  width: 33.33%;
+}
+
 .main-container {
 display: flex;
 justify-content: space-between;
@@ -139,7 +154,54 @@ text-align: left;
 .right-col {
 text-align: right;
 }
+.form-container {
+  margin: 0 auto;
+  max-width: 390px;
+  width: 80%;
+  box-sizing: border-box;
+
+}
+input[type=text] {
+  padding:20px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:10px;
+    width: 100%;
+    margin: 0 auto;
+    font-family:inherit;
+    font-size: 24px;
+  height: 78px;
+    color: #808080;
+    box-sizing: border-box;
+
+}
+
+::placeholder {
+  color: #d3d3d3;
+  opacity: 1;
+  font-family:inherit;
+  font-size: inherit;
+}
+
+
 
 @media screen and (max-width: 600px) {
-  .leaderboard { width: 90% !important; }
+  .leaderboard {
+    max-width: 350px;
+    width: 85% !important;
+  }
+  .container-flex .item {
+    margin-top: 40px;
+    width: 100%;
+  }
+  .movie-poster {
+    margin: 0 auto 20px;
+    width: 90% !important;
+  }
+}
+@media screen and (min-width: 601px) {
+  .leaderboard {
+    max-width: 800px;
+    width: 85% !important;
+  }
 }
