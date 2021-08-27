@@ -54,7 +54,7 @@
 
       data.forEach(function (item, index) {
         if (item.movie_name != "blank") {
-          document.getElementById("movie-grid").innerHTML += '<div class="movie-poster"><a href="showtimes.html?movie_title=' + encodeURI(item.movie_name) + '&movie_showtimes=' + encodeURI(item.showtimes) + '&movie_poster=' + encodeURI(item.movie_poster_url) + '"><img src="' + item.movie_poster_url + '" alt="' + item.movie_name + '" /></a></div><a href="showtimes.html?movie_title=' + encodeURI(item.movie_name) + '&movie_showtimes=' + encodeURI(item.showtimes) + '&movie_poster=' + encodeURI(data.movie_poster_url) + '"><h2 class="text-dark-color">' + item.movie_name + '</h2></a>' + ((index < data.length - 1) ? '<hr>' : '');
+          document.getElementById("movie-grid").innerHTML += '<div class="item"><div class="movie-poster"><a href="showtimes.html?movie_title=' + encodeURI(item.movie_name) + '&movie_showtimes=' + encodeURI(item.showtimes) + '&movie_poster=' + encodeURI(item.movie_poster_url) + '"><img src="' + item.movie_poster_url + '" alt="' + item.movie_name + '" /></a></div><a href="showtimes.html?movie_title=' + encodeURI(item.movie_name) + '&movie_showtimes=' + encodeURI(item.showtimes) + '&movie_poster=' + encodeURI(data.movie_poster_url) + '"><h2 class="text-dark-color">' + item.movie_name + '</h2></a></div>';
         }
       });
     }
