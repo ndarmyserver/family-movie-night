@@ -40,13 +40,35 @@
         <div id="content" style="font-size: 3rem; padding: 20px 10%;">
           <div class="main-container">
             <div class="left-col">
-              <ion-icon name="remove-circle-outline" onClick="onMinusClick()"></ion-icon>
+              <ion-icon name="remove-circle-outline" onClick="onKidMinusClick()"></ion-icon>
             </div>
             <div class="center-col">
-              <span id="num-of-tickets">0</span>
+              <span id="num-of-kidtickets">0</span>
             </div>
             <div class="right-col">
-              <ion-icon name="add-circle-outline" onClick="onPlusClick()"></ion-icon>
+              <ion-icon name="add-circle-outline" onClick="onKidPlusClick()"></ion-icon>
+            </div>
+          </div>
+          <div class="main-container">
+            <div class="left-col">
+              <ion-icon name="remove-circle-outline" onClick="onAdultMinusClick()"></ion-icon>
+            </div>
+            <div class="center-col">
+              <span id="num-of-adult-tickets">0</span>
+            </div>
+            <div class="right-col">
+              <ion-icon name="add-circle-outline" onClick="onAdultPlusClick()"></ion-icon>
+            </div>
+          </div>
+          <div class="main-container">
+            <div class="left-col">
+              <ion-icon name="remove-circle-outline" onClick="onSeniorMinusClick()"></ion-icon>
+            </div>
+            <div class="center-col">
+              <span id="num-of-senior-tickets">0</span>
+            </div>
+            <div class="right-col">
+              <ion-icon name="add-circle-outline" onClick="onSeniorPlusClick()"></ion-icon>
             </div>
           </div>
           <a href="confirmation.html" id="purchase" class="main-button">Purchase Tickets</a>
@@ -72,28 +94,85 @@
     document.getElementById("purchase").style.display = "none";
 
     var tickets = 0;
-    function onMinusClick() {
-      if(tickets > 1) {
+    var kid_tickets = 0;
+    var adult_tickets = 0;
+    var senior_tickets = 0;
+
+    function onKidMinusClick() {
+      if(kid_tickets > 1) {
+        kid_tickets -= 1;
         tickets -= 1;
         document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets);
         document.getElementById("purchase").style.display = "block";
         document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
       } else {
-        tickets = 0;
+        kid_tickets = 0;
         document.getElementById("purchase").style.display = "none";
       }
-      document.getElementById("num-of-tickets").innerText = tickets;
+      document.getElementById("num-of-kid-tickets").innerText = kid_tickets;
     };
 
-    function onPlusClick() {
-      if(tickets < 99) {
+    function onKidPlusClick() {
+      if(kid_tickets < 99) {
+        kid_tickets += 1;
         tickets += 1;
         document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets + '&movie_poster=' + encodeURI(movie_poster));
         document.getElementById("purchase").style.display = "block";
         document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
       }
-      document.getElementById("num-of-tickets").innerText = tickets;
+      document.getElementById("num-of-kid-tickets").innerText = kid_tickets;
     };
+
+    function onAdultMinusClick() {
+      if(adult_tickets > 1) {
+        adult_tickets -= 1;
+        tickets -= 1;
+        document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets);
+        document.getElementById("purchase").style.display = "block";
+        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+      } else {
+        adult_tickets = 0;
+        document.getElementById("purchase").style.display = "none";
+      }
+      document.getElementById("num-of-adult-tickets").innerText = adult_tickets;
+    };
+
+    function onAdultPlusClick() {
+      if(adult_tickets < 99) {
+        adult_tickets += 1;
+        tickets += 1;
+        document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets + '&movie_poster=' + encodeURI(movie_poster));
+        document.getElementById("purchase").style.display = "block";
+        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+      }
+      document.getElementById("num-of-adult-tickets").innerText = adult_tickets;
+    };
+
+    function onSeniorMinusClick() {
+      if(senior_tickets > 1) {
+        senior_tickets -= 1;
+        tickets -= 1;
+        document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets);
+        document.getElementById("purchase").style.display = "block";
+        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+      } else {
+        senior_tickets = 0;
+        document.getElementById("purchase").style.display = "none";
+      }
+      document.getElementById("num-of-senior-tickets").innerText = senior_tickets;
+    };
+
+    function onSeniorPlusClick() {
+      if(senior_tickets < 99) {
+        senior_tickets += 1;
+        tickets += 1;
+        document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets + '&movie_poster=' + encodeURI(movie_poster));
+        document.getElementById("purchase").style.display = "block";
+        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+      }
+      document.getElementById("num-of-senior-tickets").innerText = senior_tickets;
+    };
+
   </script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
