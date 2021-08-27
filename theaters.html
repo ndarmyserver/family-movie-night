@@ -29,26 +29,13 @@
         <a href="index.html"><img src="img/logo.jpg" alt="Shaida Family Movie Night"></a>
       </div>
       <div class="leaderboard">
-        <h1 class="text-accent-color">ORDER CONFIRMED</h1>
-        <div class="spacer">
-          <h3 id="movie-info" class="text-light-color">Movie Info</h3>
-        </div>
-        <div class="movie-poster-mini">
-          <img id="movie-poster-mini" src="" alt="" />
-        </div>
-        <h2 id="movie-title" class="text-light-color">Movie Title</h2>
-        <div class="spacer-small">
-          <h3 id="movie-showtime" class="text-light-color italic">Showtime</h3>
-        </div>
-        <div class="spacer">
-          <h3 class="text-dark-color">Show at theater entrance:</h3>
-        </div>
-        <div class="spacer">
-          <img src="img/qrcode.jpg" alt="QR Code" class="logo">
-        </div>
+        <h1 id="theater-heading" class="text-accent-color">MOVIES</h1>
+        <div id="movie-grid" class="container-flex"></div>
       </div>
     </div>
   </body>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+
   <script type="text/javascript">
     function getUrlVars() {
       var vars = {};
@@ -57,15 +44,16 @@
       });
       return vars;
     }
-    movie_title = decodeURI(getUrlVars()['movie_title']);
-    document.getElementById("movie-title").innerText = movie_title
-    movie_showtime = decodeURI(getUrlVars()['movie_showtime']);
-    document.getElementById("movie-showtime").innerText = '(' + movie_showtime + ')';
-    movie_tickets = decodeURI(getUrlVars()['movie_tickets']);
-    movie_poster = decodeURI(getUrlVars()['movie_poster']);
-    document.getElementById("movie-poster-mini").setAttribute('src', movie_poster);
-    document.getElementById("movie-poster-mini").setAttribute('alt', movie_title);
-    document.getElementById("movie-info").innerText = 'Thank you for your purchase of ' + movie_tickets + ' ticket' + ((movie_tickets == 1) ? '' : 's') + ' to'
+    latitude = (getUrlVars()['lat'] != "" ? decodeURI(getUrlVars()['lat']) : "blank");
+    longitude = (getUrlVars()['lon'] != "" ? decodeURI(getUrlVars()['lon']) : "blank");
+    zip_code = (getUrlVars()['zip'] != "" ? decodeURI(getUrlVars()['zip']) : "blank");
+    if(latitude != "" && longitude != "" && latitude > 35) {
+      document.getElementById("theater-heading").innerHTML = "Theaters near Edmond, OK:";
+    } else if(zip_code != "" && zip_code == 73012) {
+      document.getElementById("theater-heading").innerHTML = "Theaters near Rushbrook:";
+    } else {
+      document.getElementById("theater-heading").innerHTML = "No Theaters Near You.<br>Please try again.";
 
+    }
   </script>
 </html>

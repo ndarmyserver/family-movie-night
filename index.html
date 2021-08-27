@@ -12,15 +12,16 @@
     <meta name="msapplication-TileColor" content="#e7e6e8">
     <meta name="msapplication-config" content="img/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Pop-A-Shot High Score">
     <meta property="og:image" content="https://popashot.johnshaida.com/img/social-sharing.jpg">
     <meta property="og:description" content="List of high scores for Pop-A-Shot">
     <meta property="og:url" content="https://popashot.johnshaida.com">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Staatliches&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   </head>
   <body>
     <div class="wrapper">
@@ -32,12 +33,17 @@
         <h2 class="text-accent-color">NEAR YOU</h2>
         <div class="spacer-large"></div>
         <div class="form-container">
-          <input id="zip" name="zip" type="text" pattern="[0-9]*" placeholder="Search by Zip Code">
+          <div class="column-left">
+            <input id="zip" name="zip" type="text" pattern="[0-9]*" placeholder="Search by Zip Code">
+          </div>
+          <div id="zip-search" class="column-right">
+            <ion-icon name="search-outline" class="text-color-light"></ion-icon>
+          </div>
         </div>
         <div class="spacer"></div>
         <h3 class="text-accent-color">or</h2>
         <div class="spacer"></div>
-        <div id="location" class="button">Use Current Location<i class="fas fa-location-arrow" style="margin-left: 10px;"></i></div>
+        <a id="location" class="main-button"><span>USE CURRENT LOCATION</span><ion-icon name="navigate-circle-outline"></ion-icon></a>
     </div>
   </body>
 
@@ -54,6 +60,9 @@
       const latitude  = position.coords.latitude;
       const longitude = position.coords.longitude;
       console.log('Got location');
+      console.log(position);
+      window.location = 'theaters.html?lat=' + latitude + '&lon=' + longitude;
+
       // status.textContent = '';
       // mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
       // mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
@@ -72,12 +81,20 @@
     }
 
   }
+  function zipSearch() {
+    const zip_code = document.getElementById('zip').value
+    window.location = 'theaters.html?zip=' + zip_code;
+
+  }
 
   document.querySelector('#location').addEventListener('click', geoFindMe);
+  document.querySelector('#zip-search').addEventListener('click', zipSearch);
       // data.forEach(function (item, index) {
       //   if (item.movie_name != "blank") {
       //     document.getElementById("movie-grid").innerHTML += '<div class="item"><div class="movie-poster"><a href="showtimes.html?movie_title=' + encodeURI(item.movie_name) + '&movie_showtimes=' + encodeURI(item.showtimes) + '&movie_poster=' + encodeURI(item.movie_poster_url) + '"><img src="' + item.movie_poster_url + '" alt="' + item.movie_name + '" /></a></div><a href="showtimes.html?movie_title=' + encodeURI(item.movie_name) + '&movie_showtimes=' + encodeURI(item.showtimes) + '&movie_poster=' + encodeURI(data.movie_poster_url) + '"><h2 class="text-dark-color">' + item.movie_name + '</h2></a></div>';
       //   }
       // });
   </script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </html>
