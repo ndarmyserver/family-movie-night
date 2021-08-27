@@ -37,18 +37,20 @@
         <div class="spacer-small">
           <h3 id="movie-showtime" class="text-light-color italic">Showtime</h3>
         </div>
-        <div id="content" style="font-size: 3rem; padding: 20px 10%;">
+        <div id="content" style="font-size: 3rem; padding: 20px 10%;" class="text-dark-color">
+          <h3>Kid</h3>
           <div class="main-container">
             <div class="left-col">
               <ion-icon name="remove-circle-outline" onClick="onKidMinusClick()"></ion-icon>
             </div>
             <div class="center-col">
-              <span id="num-of-kidtickets">0</span>
+              <span id="num-of-kid-tickets">0</span>
             </div>
             <div class="right-col">
               <ion-icon name="add-circle-outline" onClick="onKidPlusClick()"></ion-icon>
             </div>
           </div>
+          <h3>Adult</h3>
           <div class="main-container">
             <div class="left-col">
               <ion-icon name="remove-circle-outline" onClick="onAdultMinusClick()"></ion-icon>
@@ -60,6 +62,7 @@
               <ion-icon name="add-circle-outline" onClick="onAdultPlusClick()"></ion-icon>
             </div>
           </div>
+          <h3>Senior</h3>
           <div class="main-container">
             <div class="left-col">
               <ion-icon name="remove-circle-outline" onClick="onSeniorMinusClick()"></ion-icon>
@@ -99,17 +102,21 @@
     var senior_tickets = 0;
 
     function onKidMinusClick() {
-      if(kid_tickets > 1) {
+      if(kid_tickets >= 1) {
         kid_tickets -= 1;
         tickets -= 1;
         document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets);
         document.getElementById("purchase").style.display = "block";
-        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+        document.getElementById("purchase").innerText = 'Purchase ' + tickets + ' Ticket' + ((tickets == 1 ? "" : "s"));
       } else {
         kid_tickets = 0;
         document.getElementById("purchase").style.display = "none";
       }
       document.getElementById("num-of-kid-tickets").innerText = kid_tickets;
+      console.log('kids: ' + kid_tickets);
+      console.log('adult: ' + adult_tickets);
+      console.log('senior: ' + senior_tickets);
+      console.log('total: ' + tickets);
     };
 
     function onKidPlusClick() {
@@ -118,23 +125,33 @@
         tickets += 1;
         document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets + '&movie_poster=' + encodeURI(movie_poster));
         document.getElementById("purchase").style.display = "block";
-        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+        document.getElementById("purchase").innerText = 'Purchase ' + tickets + ' Ticket' + ((tickets == 1 ? "" : "s"));
       }
       document.getElementById("num-of-kid-tickets").innerText = kid_tickets;
+      console.log('kids: ' + kid_tickets);
+      console.log('adult: ' + adult_tickets);
+      console.log('senior: ' + senior_tickets);
+      console.log('total: ' + tickets);
+
     };
 
     function onAdultMinusClick() {
-      if(adult_tickets > 1) {
+      if(adult_tickets >= 1) {
         adult_tickets -= 1;
         tickets -= 1;
         document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets);
         document.getElementById("purchase").style.display = "block";
-        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+        document.getElementById("purchase").innerText = 'Purchase ' + tickets + ' Ticket' + ((tickets == 1 ? "" : "s"));
       } else {
         adult_tickets = 0;
         document.getElementById("purchase").style.display = "none";
       }
       document.getElementById("num-of-adult-tickets").innerText = adult_tickets;
+      console.log('kids: ' + kid_tickets);
+      console.log('adult: ' + adult_tickets);
+      console.log('senior: ' + senior_tickets);
+      console.log('total: ' + tickets);
+
     };
 
     function onAdultPlusClick() {
@@ -143,23 +160,33 @@
         tickets += 1;
         document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets + '&movie_poster=' + encodeURI(movie_poster));
         document.getElementById("purchase").style.display = "block";
-        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+        document.getElementById("purchase").innerText = 'Purchase ' + tickets + ' Ticket' + ((tickets == 1 ? "" : "s"))
       }
       document.getElementById("num-of-adult-tickets").innerText = adult_tickets;
+      console.log('kids: ' + kid_tickets);
+      console.log('adult: ' + adult_tickets);
+      console.log('senior: ' + senior_tickets);
+      console.log('total: ' + tickets);
+
     };
 
     function onSeniorMinusClick() {
-      if(senior_tickets > 1) {
+      if(senior_tickets >= 1) {
         senior_tickets -= 1;
         tickets -= 1;
         document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets);
         document.getElementById("purchase").style.display = "block";
-        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+        document.getElementById("purchase").innerText = 'Purchase ' + tickets + ' Ticket' + ((tickets == 1 ? "" : "s"))
       } else {
         senior_tickets = 0;
         document.getElementById("purchase").style.display = "none";
       }
       document.getElementById("num-of-senior-tickets").innerText = senior_tickets;
+      console.log('kids: ' + kid_tickets);
+      console.log('adult: ' + adult_tickets);
+      console.log('senior: ' + senior_tickets);
+      console.log('total: ' + tickets);
+
     };
 
     function onSeniorPlusClick() {
@@ -168,9 +195,14 @@
         tickets += 1;
         document.getElementById("purchase").setAttribute('href', 'confirmation.html?movie_title=' + movie_title + '&movie_showtime=' + movie_showtime + '&movie_tickets=' + tickets + '&movie_poster=' + encodeURI(movie_poster));
         document.getElementById("purchase").style.display = "block";
-        document.getElementById("purchase").innerText = 'Purchase Ticket' + ((tickets == 1 ? "" : "s"))
+        document.getElementById("purchase").innerText = 'Purchase ' + tickets + ' Ticket' + ((tickets == 1 ? "" : "s"))
       }
       document.getElementById("num-of-senior-tickets").innerText = senior_tickets;
+      console.log('kids: ' + kid_tickets);
+      console.log('adult: ' + adult_tickets);
+      console.log('senior: ' + senior_tickets);
+      console.log('total: ' + tickets);
+
     };
 
   </script>
