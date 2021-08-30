@@ -64,9 +64,12 @@ hr {
   color: #ffffff;
 }
 .confirmation {
-  font-size: 9rem;
-  color: #28a745;
   text-align: center;
+}
+.confirmation .checkmark {
+  color: #28a745;
+  font-size: 12rem;
+  --ionicon-stroke-width: 2.5rem;
 }
 .italic {
   font-style: italic;
